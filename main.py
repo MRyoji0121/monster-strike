@@ -3,7 +3,6 @@ import math
 import sys
 import random
 
-# --- 1. 定数・色定義 ---
 WHITE, BLACK, YELLOW, RED, GREEN, PURPLE, CYAN, PINK = (255, 255, 255), (0, 0, 0), (
     255, 255, 0), (255, 0, 0), (0, 255, 0), (255, 0, 255), (0, 255, 255), (255, 105, 180)
 BG_UI = (15, 15, 25)
@@ -20,8 +19,6 @@ LEVEL_DATA = [
     {"hp": 1200000000, "pos": (200, 180), "attack": 2,
      "bar_color": (255, 100, 0)}
 ]
-
-# --- 2. クラス定義 ---
 
 class DamageText:
   def __init__(self, x, y, amount, color, is_weak=False):
@@ -342,7 +339,6 @@ class Game:
       self.draw_ui()
       if self.is_dragging:
         m = pygame.mouse.get_pos(); p = self.players[self.turn_index]
-        # ★修正：引っ張ったベクトルを反転させてガイドと矢印を表示
         rev_dx, rev_dy = self.drag_start[0] - \
             m[0], self.drag_start[1] - m[1]
         for j in range(1, 11):
@@ -386,7 +382,6 @@ class Game:
                 event.pos[0] - p.x, event.pos[1] - p.y) < 45: self.is_dragging, self.drag_start = True, event.pos
         if event.type == pygame.MOUSEBUTTONUP and self.is_dragging:
           m = pygame.mouse.get_pos(
-              # ★射出方向を引っ張りの逆に修正
           ); dx, dy = self.drag_start[0] - m[0], self.drag_start[1] - m[1]
           dist = math.hypot(dx, dy)
           if dist > 12:
@@ -398,7 +393,7 @@ class Game:
             self.is_moving, self.is_dragging = True, False
             if p.ss_ready: self.ss_charge[self.turn_index] = 0
             else: self.ss_charge = [min(SS_TURN, c + 1) for c in self.ss_charge]
-          else: self.is_dragging = False  # 引っ張りが短い時はキャンセル
+          else: self.is_dragging = False
       self.update(); self.draw(); self.clock.tick(60)
 
 if __name__ == "__main__": Game().run()
