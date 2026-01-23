@@ -171,12 +171,12 @@ class Game:
     def load_or_dummy(name, size, color):
       try: return pygame.transform.smoothscale(pygame.image.load(name).convert_alpha(), size)
       except: s = pygame.Surface(size, pygame.SRCALPHA); s.fill(color); return s
-    self.img_player, self.img_arrow, self.img_icon = load_or_dummy('asset/img/image_0.png', (40, 40), WHITE), load_or_dummy(
-        'asset//img/image_1.png', (35, 90), YELLOW), load_or_dummy('asset/img/image_2.png', (50, 50), WHITE)
+    self.img_player, self.img_arrow, self.img_icon = load_or_dummy('asset/image_0.png', (40, 40), WHITE), load_or_dummy(
+        'asset/image_1.png', (35, 90), YELLOW), load_or_dummy('asset/image_2.png', (50, 50), WHITE)
     self.player_thumb = self.img_player
     self.img_bg = pygame.transform.smoothscale(load_or_dummy(
-        'asset/img/image_3.png', (400, 600), (30, 30, 35)), (400, 600))
-    self.img_enemy = load_or_dummy('asset/img/image_4.png', (140, 140), GREEN)
+        'asset/image_3.png', (400, 600), (30, 30, 35)), (400, 600))
+    self.img_enemy = load_or_dummy('asset/image_4.png', (140, 140), GREEN)
     self.font_main, self.font_big, self.font_ui = pygame.font.SysFont(
         "impact", 26), pygame.font.SysFont("impact", 56), pygame.font.SysFont("arialrounded", 18, True)
 
